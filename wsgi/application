@@ -90,6 +90,26 @@ class Guess(object):
             return 內建頁面.render(輸入="exact", theanswer=theanswer, thecount=thecount)
 
     @cherrypy.expose
+    def multiplication_form(self):
+        return '''
+        <form action="multiplication_table">
+        Start:<input name="start" type="text">
+        End:<input name="end" type="text">
+        <input type="submit">
+        </form>
+        '''
+    
+    @cherrypy.expose
+    def multiplication_table(self, start, end):
+        start = int(start)
+        end = int(end) + 1
+        outstring = ""
+        for i in range(start, end, 1):
+            for j in range (start, end, 1):
+                outstring += str(i) + "x" + str(j) + "=" + str(i*j) + "&nbsp;"
+            outstring += "<br />"
+        return outstring
+    @cherrypy.expose
     def mytest(self):
         套稿查詢 = TemplateLookup(directories=[template_root_dir+"/templates"])
         # 必須要從 templates 目錄取出 mytest.html
