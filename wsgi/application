@@ -89,9 +89,13 @@ class Guess(object):
             thecount = cherrypy.session.get('count')
             return 內建頁面.render(輸入="exact", theanswer=theanswer, thecount=thecount)
 
+    
     @cherrypy.expose
     def multiplication_form(self):
         return '''
+
+        <a href="multiplication_form">九九乘法表</a>
+        
         <form action="multiplication_table">
         Start:<input name="start" type="text">
         End:<input name="end" type="text">
